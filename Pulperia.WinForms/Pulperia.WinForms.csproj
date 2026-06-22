@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pulperia.Business\Pulperia.Business.csproj" />
+    <ProjectReference Include="..\Pulperia.Data\Pulperia.Data.csproj" />
+    <ProjectReference Include="..\Pulperia.Domain\Pulperia.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

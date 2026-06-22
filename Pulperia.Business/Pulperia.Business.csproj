@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pulperia.Common\Pulperia.Common.csproj" />
+    <ProjectReference Include="..\Pulperia.Data\Pulperia.Data.csproj" />
+    <ProjectReference Include="..\Pulperia.Domain\Pulperia.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

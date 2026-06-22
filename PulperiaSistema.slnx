@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Elementos de la solución/" />
+  <Project Path="Pulperia.Business/Pulperia.Business.csproj" />
+  <Project Path="Pulperia.Common/Pulperia.Common.csproj" Id="16fa4f86-3a81-4d7c-b6ad-d30e3a9644dc" />
+  <Project Path="Pulperia.Data/Pulperia.Data.csproj" Id="60346ff7-8f78-4b57-af1b-33de362de6aa" />
+  <Project Path="Pulperia.Domain/Pulperia.Domain.csproj" />
+  <Project Path="Pulperia.WinForms/Pulperia.WinForms.csproj" />
+</Solution>
