@@ -9,11 +9,11 @@ namespace Pulperia.WinForms.Views
         private const string txtcontrasenaPlaceholder = "Contraseña";
 
 
-        private readonly  ServicioAutenticacion _servicioAutenticar;
+        private readonly ServicioAutenticacion _servicioAutenticar;
 
 
         public UserSession? UsuarioLogueado { get; private set; }
-        public FrmInicioSesion( ServicioAutenticacion ServicioAutenticar)
+        public FrmInicioSesion(ServicioAutenticacion ServicioAutenticar)
         {
             InitializeComponent();
 
@@ -33,7 +33,7 @@ namespace Pulperia.WinForms.Views
             string nombre = txtUsuario.Text;
             string contrasena = txtContrasena.Text;
 
-            
+
             var resultado = _servicioAutenticar.Autenticar(nombre, contrasena);
 
             if (resultado.EsExitoso)
@@ -53,7 +53,61 @@ namespace Pulperia.WinForms.Views
             MessageBox.Show("Usuario o contraseña incorrectos.", "Error de Autenticación", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void txtUsuario_Enter(object sender, EventArgs e)
+        {
+            if (txtUsuario.Text == txtusuarioPlaceholder)
+            {
+                txtUsuario.Text = "";
+            }
+        }
 
+        private void txtUsuario_Leave(object sender, EventArgs e)
+        {
+            if (txtUsuario.Text == "")
+            {
+                txtUsuario.Text = txtusuarioPlaceholder;
+            }
+        }
+
+        private void FrmInicioSesion_Enter(object sender, EventArgs e)
+        {
+            if (txtContrasena.Text == txtcontrasenaPlaceholder)
+            {
+                txtContrasena.Text = "";
+            }
+        }
+
+        private void txtContrasena_Leave(object sender, EventArgs e)
+        {
+            if (txtContrasena.Text == "")
+            {
+                txtContrasena.Text = txtcontrasenaPlaceholder;
+                txtContrasena.PasswordChar = '\0';
+                txtContrasena.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtContrasena.PasswordChar = '*';
+                txtContrasena.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtContrasena_Enter(object sender, EventArgs e)
+        {
+            if (txtContrasena.Text == txtcontrasenaPlaceholder)
+            {
+                txtContrasena.Text = "";
+            }
+        }
+
+        private void txtContrasena_TextChanged(object sender, EventArgs e)
+        {
+            if (txtContrasena.Text != "Contraseña")
+            {
+                txtContrasena.PasswordChar = '*';
+                txtContrasena.UseSystemPasswordChar = true;
+            }
+        }
     }
-    
+
 }

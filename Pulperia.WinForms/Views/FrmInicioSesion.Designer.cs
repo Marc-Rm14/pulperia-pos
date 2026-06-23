@@ -32,21 +32,33 @@
             txtContrasena = new TextBox();
             btnConfirmar = new Button();
             btnCerrar = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(96, 99);
+            txtUsuario.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsuario.ForeColor = Color.Gray;
+            txtUsuario.Location = new Point(96, 116);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(259, 27);
+            txtUsuario.Size = new Size(259, 31);
             txtUsuario.TabIndex = 0;
+            txtUsuario.Text = "Usuario";
+            txtUsuario.Enter += txtUsuario_Enter;
+            txtUsuario.Leave += txtUsuario_Leave;
             // 
             // txtContrasena
             // 
+            txtContrasena.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtContrasena.ForeColor = Color.Gray;
             txtContrasena.Location = new Point(96, 210);
             txtContrasena.Name = "txtContrasena";
-            txtContrasena.Size = new Size(259, 27);
+            txtContrasena.Size = new Size(259, 31);
             txtContrasena.TabIndex = 1;
+            txtContrasena.Text = "Contraseña";
+            txtContrasena.TextChanged += txtContrasena_TextChanged;
+            txtContrasena.Enter += txtContrasena_Enter;
+            txtContrasena.Leave += txtContrasena_Leave;
             // 
             // btnConfirmar
             // 
@@ -68,11 +80,25 @@
             btnCerrar.Text = "Cerrar";
             btnCerrar.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            label1.BackColor = Color.FromArgb(65, 64, 115);
+            label1.Dock = DockStyle.Top;
+            label1.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.HighlightText;
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(437, 64);
+            label1.TabIndex = 4;
+            label1.Text = "Acceso Usuario";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // FrmInicioSesion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(437, 450);
+            Controls.Add(label1);
             Controls.Add(btnCerrar);
             Controls.Add(btnConfirmar);
             Controls.Add(txtContrasena);
@@ -92,5 +118,6 @@
         private TextBox txtContrasena;
         private Button btnConfirmar;
         private Button btnCerrar;
+        private Label label1;
     }
 }
