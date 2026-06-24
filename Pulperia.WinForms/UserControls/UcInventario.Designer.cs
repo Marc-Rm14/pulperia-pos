@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
+            label1 = new Label();
             btnStock = new FontAwesome.Sharp.IconButton();
             btnCategorias = new FontAwesome.Sharp.IconButton();
             btnProductos = new FontAwesome.Sharp.IconButton();
@@ -43,7 +44,6 @@
             txtBuscar = new TextBox();
             tPageCategorias = new TabPage();
             tPageAlertas = new TabPage();
-            label1 = new Label();
             panelMenu.SuspendLayout();
             tbcContenido.SuspendLayout();
             tPageProductos.SuspendLayout();
@@ -63,6 +63,17 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(994, 90);
             panelMenu.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.HighlightText;
+            label1.Location = new Point(40, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(163, 41);
+            label1.TabIndex = 3;
+            label1.Text = "Inventario";
             // 
             // btnStock
             // 
@@ -222,6 +233,7 @@
             btnNuevo.Text = "Nuevo";
             btnNuevo.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNuevo.UseVisualStyleBackColor = true;
+            btnNuevo.Click += btnNuevo_Click;
             // 
             // txtBuscar
             // 
@@ -254,17 +266,6 @@
             tPageAlertas.TabIndex = 1;
             tPageAlertas.Text = "tabPage3";
             tPageAlertas.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.HighlightText;
-            label1.Location = new Point(40, 14);
-            label1.Name = "label1";
-            label1.Size = new Size(163, 41);
-            label1.TabIndex = 3;
-            label1.Text = "Inventario";
             // 
             // UcInventario
             // 

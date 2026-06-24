@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Pulperia.Domain.Interfaces;
-
+using Pulperia.WinForms.Modales;
 namespace Pulperia.WinForms.UserControls
 {
     public partial class UcInventario : UserControl
@@ -155,6 +155,17 @@ namespace Pulperia.WinForms.UserControls
             if (txtBuscar.Text == "")
             {
                 txtBuscar.Text = "Buscar Productos...";
+            }
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            using (var modal = new FrmEditarProducto(_productoRepository, null))
+            {
+                if (modal.ShowDialog() == DialogResult.OK)
+                {
+                    CargarListadoProductos(); // Se refresca tu grilla automáticamente
+                }
             }
         }
     }
