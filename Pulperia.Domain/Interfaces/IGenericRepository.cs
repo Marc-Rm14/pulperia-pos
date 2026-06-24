@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Pulperia.Domain.Interfaces
+﻿namespace Pulperia.Domain.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
 
-        public IEnumerable<T> ObetnerTodos();
+        IEnumerable<T> ObtenerTodos();
+
+        bool Insert(T entidad);
+
+        T ObtenerPorId(int id);
+
+        bool Update(T entidad);
     }
 }

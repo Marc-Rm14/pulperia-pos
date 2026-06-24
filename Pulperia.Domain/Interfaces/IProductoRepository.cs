@@ -6,17 +6,21 @@ using Pulperia.Domain.DTOS;
 
 namespace Pulperia.Domain.Interfaces
 {
-    public interface IProductoRepository
+    public interface IProductoRepository: IGenericRepository<Producto>
     {
-        bool Insert(Producto producto);
 
+        
 
         List<ProductoBusqueda> BuscarPorNombre(string texto);
 
-        Producto ObtenerPorId(int id);
 
 
-        List<Producto> ObtenerTodos(string filtro);
+        List<Producto> ObtenerTodosConFiltro(string filtro);
+
+        
+
+
+
     }
 
 }

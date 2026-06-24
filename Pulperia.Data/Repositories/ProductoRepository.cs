@@ -91,7 +91,7 @@ namespace Pulperia.Data.Repositories
         }
 
 
-        public List<Producto> ObtenerTodos(string filtro = "")
+        public List<Producto> ObtenerTodosConFiltro(string filtro = "")
         {
             using (var db = _dataBase.ObtenerConexion())
             {
@@ -120,5 +120,14 @@ namespace Pulperia.Data.Repositories
             }
         }
 
+        IEnumerable<Producto> IGenericRepository<Producto>.ObtenerTodos()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IGenericRepository<Producto>.Update(Producto entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

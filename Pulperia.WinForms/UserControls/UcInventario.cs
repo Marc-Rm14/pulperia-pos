@@ -51,7 +51,7 @@ namespace Pulperia.WinForms.UserControls
                 // Obtenemos el texto del buscador (si está vacío, traerá todo)
                 string criterio = txtBuscar.Text.Trim();
 
-                var lista = _productoRepository.ObtenerTodos(criterio);
+                var lista = _productoRepository.ObtenerTodosConFiltro(criterio);
 
                 // Vinculamos la lista al DataGridView
                 dgvProductos.DataSource = null;
