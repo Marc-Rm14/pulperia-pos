@@ -188,10 +188,22 @@ namespace Pulperia.WinForms.UserControls
             try
             {
                 // 3. Invocamos a la Capa de Negocio (un Servicio, no el Repositorio directo)
-                _ventaService.RegistrarNuevaVenta(nuevaVenta);
+                ResultadoVenta resultado =  _ventaService.RegistrarNuevaVenta(nuevaVenta);
 
-                // 4. Éxito en la UI
+
+                if (!resultado.EsExitosa) 
+                {
+                    MessageBox.Show($"Error: {resultado.MensajeError}", "Error al procesar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 MessageBox.Show("Venta procesada con éxito.", "Excelente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // 5. Abrir el documento después de confirmar
+                if (File.Exists(resultado.RutaPdf))
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(resultado.RutaPdf) { UseShellExecute = true });
+                }
 
                 // Limpieza de controles visuales
                 _detalleVentaGrid.Clear();

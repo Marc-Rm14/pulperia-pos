@@ -5,6 +5,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="PDFsharp-MigraDoc" Version="6.2.4" />
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pulperia.Common\Pulperia.Common.csproj" />
     <ProjectReference Include="..\Pulperia.Data\Pulperia.Data.csproj" />

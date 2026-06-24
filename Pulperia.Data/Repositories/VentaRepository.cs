@@ -16,11 +16,10 @@ namespace Pulperia.Data.Repositories
         }
 
 
-        public bool ProcesarVenta(RegistrarVenta venta)
+        public int ProcesarVenta(RegistrarVenta venta)
         {
             using (var conn = _dbContext.ObtenerConexion())
             {
-                conn.Open();
 
 
 
@@ -29,9 +28,10 @@ namespace Pulperia.Data.Repositories
                     try
                     {
                         string sqlVenta = @"INSERT INTO ventas (id_usuario) 
-                                        VALUES(@IdUsuario);
-                                         SELECT  last_insert_rowid();";
-                        int idNuevaVenta = conn.ExecuteScalar<int>(sqlVenta, new { IdUsuario = venta.IdUsuario, }, transaccion);
+                                            VALUES(@IdUsuario);
+                                            SELECT last_insert_rowid();";
+
+                        int idNuevaVenta = conn.ExecuteScalar<int>(sqlVenta, new { IdUsuario = venta.IdUsuario }, transaccion);
 
 
                         //Ahora procesamos cada articulo del carrito
@@ -71,13 +71,13 @@ namespace Pulperia.Data.Repositories
                         }
 
                         transaccion.Commit();
-                        return true;
+                        return idNuevaVenta;
                     }
                     catch (Exception ex)
                     {
                         transaccion.Rollback();
                         Debug.WriteLine(ex.Message);
-                        return false;
+                        return 0;
                     }
 
 
