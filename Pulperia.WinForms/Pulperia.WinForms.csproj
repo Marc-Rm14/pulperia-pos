@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Pulperia.Business\Pulperia.Business.csproj" />
     <ProjectReference Include="..\Pulperia.Data\Pulperia.Data.csproj" />
     <ProjectReference Include="..\Pulperia.Domain\Pulperia.Domain.csproj" />

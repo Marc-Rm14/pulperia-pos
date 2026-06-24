@@ -66,7 +66,7 @@ namespace Pulperia.Data.Repositories
             using (var conn = _dataBase.ObtenerConexion())
             {
                 // QuerySingleOrDefault devuelve el objeto Producto o null si el ID no existe
-                return conn.QuerySingleOrDefault<Producto>(sql, new { id });
+                return conn.QuerySingleOrDefault<Producto>(sql, new { id }) ?? new Producto();
             }
         }
 
@@ -87,6 +87,36 @@ namespace Pulperia.Data.Repositories
                 var patron = $"%{textoBusqueda}%";
 
                 return conn.Query<ProductoBusqueda>(sql, new { patron }).ToList();
+            }
+        }
+
+
+        public List<Producto> ObtenerTodos(string filtro = "")
+        {
+            using (var db = _dataBase.ObtenerConexion())
+            {
+                // Consultamos todos los campos de tu entidad pura Producto
+                string sql = @"
+                SELECT p.id AS IdProducto, 
+                       p.nombre AS NombreProducto, 
+                       p.id_categoria AS IdCategoria, 
+                       p.id_unidad_medida AS IdUnidad, 
+                       p.esta_activo AS EstaActivo, 
+                       p.precio_venta AS Precio, 
+                       p.stock_actual AS StockActual, 
+                       p.stock_minimo AS StockMinimo, 
+                       p.es_perecedero AS EsPerecedero,
+                       c.nombre as CategoriaNombre
+                       
+
+
+
+                FROM productos p
+                INNER JOIN categorias c ON p.id_categoria = c.id
+                WHERE p.nombre LIKE @Filtro";
+
+                var parametros = new { Filtro = $"%{filtro}%" };
+                return db.Query<Producto>(sql, parametros).ToList();
             }
         }
 

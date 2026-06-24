@@ -13,11 +13,17 @@ namespace Pulperia.Domain.Entities
         public int IdUnidad { get; set; }
         public bool EstaActivo { get; set; }
         public int Precio { get; set; }
-        public int Existencia {  get; set; }
+       
         public int StockMinimo {  get; set; }
         public bool EsPerecedero {  get; set; }
 
         public double StockActual { get; set; }
+
+
+        public decimal PrecioDecimal => Precio / 100m;
+
+
+        public string CategoriaNombre { get; set; }
 
 
         public Producto() { } 

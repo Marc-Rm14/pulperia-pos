@@ -14,6 +14,9 @@ namespace Pulperia.Domain.Interfaces
         List<ProductoBusqueda> BuscarPorNombre(string texto);
 
         Producto ObtenerPorId(int id);
+
+
+        List<Producto> ObtenerTodos(string filtro);
     }
 
 }

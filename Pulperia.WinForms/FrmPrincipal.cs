@@ -43,7 +43,7 @@ namespace Pulperia.WinForms
             _gestorVistas = new(pnlContenedor);
 
             _gestorVistas.RegistrarVista("Ventas", () => new UCVentas(_productoRepo, _ventaService));
-            _gestorVistas.RegistrarVista("Catalogo", () => new UcCatalogo()); // Si UcCatalogo no ocupa nada, va vacío.
+            _gestorVistas.RegistrarVista("Catalogo", () => new UcInventario(_productoRepo)); // Si UcCatalogo no ocupa nada, va vacío.
         
 
 
