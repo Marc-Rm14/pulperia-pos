@@ -30,20 +30,18 @@ namespace Pulperia.WinForms
             InitializeComponent();
 
 
-            //TODO: Limpiar repositorios y logica de prueba
-            if (productoRepo == null || categoriaRepository == null)
-            {
-                return;
-            }
+           
 
             _ventaService = ventaService;
             _productoRepo = productoRepo;
+
+            _categoriaRepository = categoriaRepository;
 
 
             _gestorVistas = new(pnlContenedor);
 
             _gestorVistas.RegistrarVista("Ventas", () => new UCVentas(_productoRepo, _ventaService));
-            _gestorVistas.RegistrarVista("Catalogo", () => new UcInventario(_productoRepo)); // Si UcCatalogo no ocupa nada, va vacío.
+            _gestorVistas.RegistrarVista("Catalogo", () => new UcInventario(_productoRepo, _categoriaRepository)); // Si UcCatalogo no ocupa nada, va vacío.
         
 
 

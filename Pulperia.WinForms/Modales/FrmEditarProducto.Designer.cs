@@ -37,7 +37,6 @@
             chkEstaActivo = new CheckBox();
             txtPrecio = new TextBox();
             txtStockMinimo = new TextBox();
-            txtStockActual = new TextBox();
             txtNombre = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -52,7 +51,6 @@
             panel1.Controls.Add(chkEstaActivo);
             panel1.Controls.Add(txtPrecio);
             panel1.Controls.Add(txtStockMinimo);
-            panel1.Controls.Add(txtStockActual);
             panel1.Controls.Add(txtNombre);
             panel1.Location = new Point(43, 34);
             panel1.Name = "panel1";
@@ -137,13 +135,6 @@
             txtStockMinimo.Size = new Size(125, 27);
             txtStockMinimo.TabIndex = 2;
             // 
-            // txtStockActual
-            // 
-            txtStockActual.Location = new Point(22, 97);
-            txtStockActual.Name = "txtStockActual";
-            txtStockActual.Size = new Size(125, 27);
-            txtStockActual.TabIndex = 1;
-            // 
             // txtNombre
             // 
             txtNombre.Location = new Point(22, 27);
@@ -180,7 +171,6 @@
         private CheckBox chkEstaActivo;
         private TextBox txtPrecio;
         private TextBox txtStockMinimo;
-        private TextBox txtStockActual;
         private TextBox txtNombre;
     }
 }

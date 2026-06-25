@@ -107,6 +107,8 @@ namespace Pulperia.WinForms
             
             VentaRepository ventaRepository = new VentaRepository(dbContext);
 
+            
+
 
             VentaService ventaService = new VentaService(ventaRepository, productoRepository);
 

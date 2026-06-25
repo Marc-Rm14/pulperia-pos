@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using System.Diagnostics;
 using Pulperia.Domain.Interfaces;
 using Pulperia.Domain.Entities;
 
@@ -18,31 +17,19 @@ namespace Pulperia.Data.Repositories
             _dataBase = dbContext;
         }
 
-        public List<Categoria> ObtenerTodas()
+        public IEnumerable<Categoria> ObtenerTodos()
         {
             using var db = _dataBase.ObtenerConexion();
 
 
 
-            string sql = "SELECT id, nombre FROM categorias";
+            string sql = "SELECT id as Id, nombre as Nombre FROM categorias";
 
             //Le pasamos el tipo que va almacenar la lista, el cual es el mismo que va a devolver el metodo.
-            return db.Query<Categoria>(sql).ToList();
+            return db.Query<Categoria>(sql);
         }
 
-
-
-        public void ver(List<Categoria> ls)
-        {
-            foreach (Categoria c in ls)
-            {
-                Debug.WriteLine(c.ToString());
-            }
-
-        }
-
-
-        public void Insertar(Categoria categoria)
+        public bool Insert(Categoria entidad)
         {
             using var db = _dataBase.ObtenerConexion();
 
@@ -51,12 +38,23 @@ namespace Pulperia.Data.Repositories
 
 
 
-            db.Execute(sql, categoria);
+            int resultado = db.Execute(sql, entidad);
+
+
+            if(resultado <= 0) return false;
+
+
+            return true;
         }
 
+        public Categoria ObtenerPorId(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-
-
-
+        public bool Update(Categoria entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,13 +1,5 @@
 ﻿using Pulperia.Domain.Entities;
 using Pulperia.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Pulperia.WinForms.Modales
 {
@@ -16,11 +8,14 @@ namespace Pulperia.WinForms.Modales
         private readonly IProductoRepository _productoRepository;
         private Producto? _productoOriginal; // Guardará el producto si es edición
         private bool _esEdicion = false;
-        public FrmEditarProducto(IProductoRepository productoRepository, Producto? producto = null)
+
+        private readonly ICategoriaRepository _categoriaRepository;
+        public FrmEditarProducto(IProductoRepository productoRepository, ICategoriaRepository CategoriaRepository,Producto? producto = null)
         {
             InitializeComponent();
             _productoRepository = productoRepository;
             _productoOriginal = producto;
+            _categoriaRepository = CategoriaRepository;
 
             if (_productoOriginal != null)
             {
@@ -68,16 +63,23 @@ namespace Pulperia.WinForms.Modales
 
             if (!_esEdicion)
             {
-                productoParaGuardar.StockActual = Convert.ToDouble(txtStockActual.Text);
+                //productoParaGuardar.StockActual = Convert.ToDouble(txtStockActual.Text);
             }
 
             
            
         }
 
+        private void CargarCombos()
+        {
+            cboCategorias.DataSource = _categoriaRepository.ObtenerTodos(); 
+            cboCategorias.DisplayMember = "Nombre";
+            cboCategorias.ValueMember = "Id";
+        }
+
         private void FrmEditarProducto_Load(object sender, EventArgs e)
         {
-            //CargarCombos(); // Primero llenas tus ComboBoxes de Categorías y Unidades
+            CargarCombos(); // Primero llenas tus ComboBoxes de Categorías y Unidades
 
             if (_esEdicion && _productoOriginal != null)
             {
@@ -92,13 +94,13 @@ namespace Pulperia.WinForms.Modales
                 // Convertimos el entero de la DB a decimal visible para el usuario (ej: 4500 -> 45)
                 txtPrecio.Text = (_productoOriginal.Precio / 100m).ToString("0.00");
 
-                txtStockActual.Text = _productoOriginal.StockActual.ToString();
+                //txtStockActual.Text = _productoOriginal.StockActual.ToString();
                 txtStockMinimo.Text = _productoOriginal.StockMinimo.ToString();
                 chkEsPerecedero.Checked = _productoOriginal.EsPerecedero;
                 chkEstaActivo.Checked = _productoOriginal.EstaActivo;
 
                 
-                txtStockActual.Enabled = false;
+                //txtStockActual.Enabled = false;
             }
             else
             {
