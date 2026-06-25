@@ -29,22 +29,49 @@
         private void InitializeComponent()
         {
             pnlSuperior = new Panel();
+            lblEstablecimiento = new Label();
+            lblTitulo = new Label();
             pnlBarraBotones = new Panel();
+            btnCatalogo = new Button();
             btnSalir = new Button();
             BtnPuntoVenta = new Button();
             pnlContenedor = new Panel();
-            btnCatalogo = new Button();
+            pnlSuperior.SuspendLayout();
             pnlBarraBotones.SuspendLayout();
             SuspendLayout();
             // 
             // pnlSuperior
             // 
             pnlSuperior.BackColor = Color.FromArgb(65, 64, 115);
+            pnlSuperior.Controls.Add(lblEstablecimiento);
+            pnlSuperior.Controls.Add(lblTitulo);
             pnlSuperior.Dock = DockStyle.Top;
             pnlSuperior.Location = new Point(0, 0);
             pnlSuperior.Name = "pnlSuperior";
             pnlSuperior.Size = new Size(1262, 67);
             pnlSuperior.TabIndex = 0;
+            // 
+            // lblEstablecimiento
+            // 
+            lblEstablecimiento.AutoSize = true;
+            lblEstablecimiento.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEstablecimiento.ForeColor = SystemColors.HighlightText;
+            lblEstablecimiento.Location = new Point(322, 12);
+            lblEstablecimiento.Name = "lblEstablecimiento";
+            lblEstablecimiento.Size = new Size(320, 38);
+            lblEstablecimiento.TabIndex = 1;
+            lblEstablecimiento.Text = "Pulperia La Chamorrito";
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = SystemColors.HighlightText;
+            lblTitulo.Location = new Point(21, 9);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(275, 41);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Sistema De Ventas";
             // 
             // pnlBarraBotones
             // 
@@ -58,9 +85,21 @@
             pnlBarraBotones.Size = new Size(190, 606);
             pnlBarraBotones.TabIndex = 1;
             // 
+            // btnCatalogo
+            // 
+            btnCatalogo.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnCatalogo.Location = new Point(48, 93);
+            btnCatalogo.Name = "btnCatalogo";
+            btnCatalogo.Size = new Size(94, 42);
+            btnCatalogo.TabIndex = 2;
+            btnCatalogo.Text = "Catalogo";
+            btnCatalogo.UseVisualStyleBackColor = true;
+            btnCatalogo.Click += btnCatalogo_Click;
+            // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(48, 489);
+            btnSalir.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSalir.Location = new Point(48, 167);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(94, 43);
             btnSalir.TabIndex = 1;
@@ -70,6 +109,7 @@
             // 
             // BtnPuntoVenta
             // 
+            BtnPuntoVenta.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             BtnPuntoVenta.Location = new Point(48, 26);
             BtnPuntoVenta.Name = "BtnPuntoVenta";
             BtnPuntoVenta.Size = new Size(94, 39);
@@ -86,16 +126,6 @@
             pnlContenedor.Size = new Size(1072, 606);
             pnlContenedor.TabIndex = 2;
             // 
-            // btnCatalogo
-            // 
-            btnCatalogo.Location = new Point(48, 93);
-            btnCatalogo.Name = "btnCatalogo";
-            btnCatalogo.Size = new Size(94, 42);
-            btnCatalogo.TabIndex = 2;
-            btnCatalogo.Text = "Catalogo";
-            btnCatalogo.UseVisualStyleBackColor = true;
-            btnCatalogo.Click += btnCatalogo_Click;
-            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -107,6 +137,8 @@
             Name = "FrmPrincipal";
             Text = "Form1";
             Load += FrmPrincipal_Load;
+            pnlSuperior.ResumeLayout(false);
+            pnlSuperior.PerformLayout();
             pnlBarraBotones.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -119,5 +151,7 @@
         private Button BtnPuntoVenta;
         private Button btnSalir;
         private Button btnCatalogo;
+        private Label lblEstablecimiento;
+        private Label lblTitulo;
     }
 }

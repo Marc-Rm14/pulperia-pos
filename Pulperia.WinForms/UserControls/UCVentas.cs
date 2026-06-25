@@ -115,6 +115,7 @@ namespace Pulperia.WinForms.UserControls
                     lstResultados.ValueMember = "IdProducto"; // El ID oculto
 
                     lstResultados.Visible = true;
+                    lblDetallesLista.Visible = true;
                 }
 
             }
