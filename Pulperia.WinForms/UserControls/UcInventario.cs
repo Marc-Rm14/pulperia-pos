@@ -258,16 +258,32 @@ namespace Pulperia.WinForms.UserControls
         {
             if (dgvCategorias.CurrentRow != null)
             {
-
+                using(var modal = new FrmEditarCategoria(_categoriaRepository,null)) 
+                {
+                    if(modal.ShowDialog() == DialogResult.OK) { }
+            }
             }
         }
 
         private void btnEditarCategoria_Click(object sender, EventArgs e)
         {
-            if (dgvCategorias.CurrentRow != null)
+            if (dgvCategorias.CurrentRow == null)
             {
-
+                MessageBox.Show("Seleccione un registro por favor para edición", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
+
+            var categoriaSeleccionada = (Categoria)dgvCategorias.CurrentRow.DataBoundItem;
+
+
+            using(var modal = new FrmEditarCategoria(_categoriaRepository,categoriaSeleccionada)) 
+            {
+                if(modal.ShowDialog() == DialogResult.OK) 
+                {
+                  
+                }
+
+        }
         }
     }
 }
