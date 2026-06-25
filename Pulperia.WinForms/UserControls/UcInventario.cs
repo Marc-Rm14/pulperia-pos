@@ -48,8 +48,13 @@ namespace Pulperia.WinForms.UserControls
         {
             try
             {
-                // Obtenemos el texto del buscador (si está vacío, traerá todo)
                 string criterio = txtBuscar.Text.Trim();
+
+                
+                if (criterio == "Buscar Productos...")
+                {
+                    criterio = "";
+                }
 
                 var lista = _productoRepository.ObtenerTodosConFiltro(criterio);
 
@@ -59,9 +64,6 @@ namespace Pulperia.WinForms.UserControls
 
                 // Formateamos las columnas para que se vea profesional
                 ConfigurarColumnasGrilla();
-
-                // Actualizamos el label de conteo
-                //LblTotalProductos.Text = $"Mostrando {lista.Count} productos";
             }
             catch (Exception ex)
             {
