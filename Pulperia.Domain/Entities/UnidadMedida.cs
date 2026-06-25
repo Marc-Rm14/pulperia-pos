@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Pulperia.Domain.Entities
+﻿namespace Pulperia.Domain.Entities
 {
     public  class UnidadMedida
     {
-        public int IdMedida { get; set; }
+        public int Id { get; set; }
 
 
         public string Nombre {  get; set; }
@@ -16,6 +12,7 @@ namespace Pulperia.Domain.Entities
 
 
 
+        public string Descripcion => $"{Nombre}-{Siglas}";
 
         public UnidadMedida() { }
 

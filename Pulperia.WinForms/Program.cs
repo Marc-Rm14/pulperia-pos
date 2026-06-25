@@ -84,6 +84,7 @@ namespace Pulperia.WinForms
             IUsuarioRepository usuarioRepository = new UsuarioRepository(dbContext);
             IProductoRepository productoRepository = new ProductoRepository(dbContext);
             ICategoriaRepository categoriaRepository = new CategoriaRepository(dbContext);
+            IUnidadMedidaRepository unidadMedidaRepository = new UnidadMedidaRepository(dbContext);
 
 
 
@@ -112,7 +113,7 @@ namespace Pulperia.WinForms
 
             VentaService ventaService = new VentaService(ventaRepository, productoRepository);
 
-            Application.Run(new FrmPrincipal(productoRepository, categoriaRepository, ventaService));
+            Application.Run(new FrmPrincipal(productoRepository, categoriaRepository, ventaService, unidadMedidaRepository));
         }
     }
 }

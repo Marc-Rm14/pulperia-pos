@@ -10,7 +10,9 @@ namespace Pulperia.WinForms.UserControls
         private readonly IProductoRepository _productoRepository;
 
         private readonly ICategoriaRepository _categoriaRepository;
-        public UcInventario(IProductoRepository ProductoRepository, ICategoriaRepository CategoriaRepository)
+
+        private readonly IUnidadMedidaRepository _unidadMedidaRepository;
+        public UcInventario(IProductoRepository ProductoRepository, ICategoriaRepository CategoriaRepository, IUnidadMedidaRepository unidadMedidaRepository)
         {
             InitializeComponent();
 
@@ -19,7 +21,7 @@ namespace Pulperia.WinForms.UserControls
             _categoriaRepository = CategoriaRepository;
 
             InventarioEvents.VentaProcesada += RecargarInventario;
-
+            _unidadMedidaRepository = unidadMedidaRepository;
         }
 
 
@@ -174,7 +176,7 @@ namespace Pulperia.WinForms.UserControls
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var modal = new FrmEditarProducto(_productoRepository, _categoriaRepository, null))
+            using (var modal = new FrmEditarProducto(_productoRepository, _categoriaRepository, _unidadMedidaRepository,null))
             {
                 if (modal.ShowDialog() == DialogResult.OK)
                 {

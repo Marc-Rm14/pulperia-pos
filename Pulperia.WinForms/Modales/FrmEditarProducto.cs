@@ -10,12 +10,15 @@ namespace Pulperia.WinForms.Modales
         private bool _esEdicion = false;
 
         private readonly ICategoriaRepository _categoriaRepository;
-        public FrmEditarProducto(IProductoRepository productoRepository, ICategoriaRepository CategoriaRepository, Producto? producto = null)
+
+        private readonly IUnidadMedidaRepository _unidadMedidaRepository;
+        public FrmEditarProducto(IProductoRepository productoRepository, ICategoriaRepository CategoriaRepository, IUnidadMedidaRepository unidadMedidaRepository,Producto? producto = null)
         {
             InitializeComponent();
             _productoRepository = productoRepository;
             _productoOriginal = producto;
             _categoriaRepository = CategoriaRepository;
+            _unidadMedidaRepository = unidadMedidaRepository;
 
             if (_productoOriginal != null)
             {
@@ -75,6 +78,11 @@ namespace Pulperia.WinForms.Modales
             cboCategorias.DataSource = _categoriaRepository.ObtenerTodos();
             cboCategorias.DisplayMember = "Nombre";
             cboCategorias.ValueMember = "Id";
+
+
+            cboUnidad.DataSource = _unidadMedidaRepository.ObtenerTodos();
+            cboUnidad.DisplayMember = "Descripcion";
+            cboUnidad.ValueMember = "Id";
         }
 
         private void FrmEditarProducto_Load(object sender, EventArgs e)

@@ -11,6 +11,7 @@ namespace Pulperia.WinForms
         private readonly IProductoRepository? _productoRepo;
         private readonly ICategoriaRepository? _categoriaRepository;
         private readonly VentaService _ventaService;
+        private readonly IUnidadMedidaRepository _unidadMedidaRepo;
 
 
         private readonly UserSession userSession;
@@ -25,7 +26,7 @@ namespace Pulperia.WinForms
 
 
 
-        public FrmPrincipal(IProductoRepository productoRepo, ICategoriaRepository categoriaRepository, VentaService ventaService)
+        public FrmPrincipal(IProductoRepository productoRepo, ICategoriaRepository categoriaRepository, VentaService ventaService, IUnidadMedidaRepository unidadMedidaRepository)
         {
             InitializeComponent();
 
@@ -34,6 +35,7 @@ namespace Pulperia.WinForms
 
             _ventaService = ventaService;
             _productoRepo = productoRepo;
+            _unidadMedidaRepo = unidadMedidaRepository;
 
             _categoriaRepository = categoriaRepository;
 
@@ -41,7 +43,7 @@ namespace Pulperia.WinForms
             _gestorVistas = new(pnlContenedor);
 
             _gestorVistas.RegistrarVista("Ventas", () => new UCVentas(_productoRepo, _ventaService));
-            _gestorVistas.RegistrarVista("Catalogo", () => new UcInventario(_productoRepo, _categoriaRepository)); // Si UcCatalogo no ocupa nada, va vacío.
+            _gestorVistas.RegistrarVista("Catalogo", () => new UcInventario(_productoRepo, _categoriaRepository, _unidadMedidaRepo)); // Si UcCatalogo no ocupa nada, va vacío.
         
 
 
