@@ -1,7 +1,8 @@
-﻿using Pulperia.Domain.Interfaces;
-using System.ComponentModel;
+﻿using Pulperia.Business;
 using Pulperia.Domain.DTOS;
-using Pulperia.Business;
+using Pulperia.Domain.Events;
+using Pulperia.Domain.Interfaces;
+using System.ComponentModel;
 
 namespace Pulperia.WinForms.UserControls
 {
@@ -199,6 +200,7 @@ namespace Pulperia.WinForms.UserControls
 
                 MessageBox.Show("Venta procesada con éxito.", "Excelente", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                InventarioEvents.NotificarVenta();
                 // 5. Abrir el documento después de confirmar
                 if (File.Exists(resultado.RutaPdf))
                 {

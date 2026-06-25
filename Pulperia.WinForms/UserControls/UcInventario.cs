@@ -1,13 +1,8 @@
-﻿using Pulperia.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿using Pulperia.Domain.Events;
 using Pulperia.Domain.Interfaces;
 using Pulperia.WinForms.Modales;
+
+
 namespace Pulperia.WinForms.UserControls
 {
     public partial class UcInventario : UserControl
@@ -20,8 +15,22 @@ namespace Pulperia.WinForms.UserControls
 
             _productoRepository = ProductoRepository;
 
+            InventarioEvents.VentaProcesada += RecargarInventario;
+
+        }
 
 
+        private void RecargarInventario()
+        {
+            // Verifica si estamos en el hilo de la UI antes de actualizar
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(RecargarInventario));
+                return;
+            }
+
+            // Aquí llamas a tu método para listar productos nuevamente
+            CargarListadoProductos();
         }
 
         private void btnProductos_Click(object sender, EventArgs e)
@@ -169,6 +178,14 @@ namespace Pulperia.WinForms.UserControls
                     CargarListadoProductos(); // Se refresca tu grilla automáticamente
                 }
             }
+        }
+
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            // Esto asegura que cuando el control se destruya, se desuscriba
+            InventarioEvents.VentaProcesada -= RecargarInventario;
+            base.OnHandleDestroyed(e);
         }
     }
 }
