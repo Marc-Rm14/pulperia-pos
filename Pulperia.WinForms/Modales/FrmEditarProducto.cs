@@ -10,7 +10,7 @@ namespace Pulperia.WinForms.Modales
         private bool _esEdicion = false;
 
         private readonly ICategoriaRepository _categoriaRepository;
-        public FrmEditarProducto(IProductoRepository productoRepository, ICategoriaRepository CategoriaRepository,Producto? producto = null)
+        public FrmEditarProducto(IProductoRepository productoRepository, ICategoriaRepository CategoriaRepository, Producto? producto = null)
         {
             InitializeComponent();
             _productoRepository = productoRepository;
@@ -38,7 +38,7 @@ namespace Pulperia.WinForms.Modales
             }
 
 
-            if (decimal.TryParse(txtPrecio.Text, out decimal precioIngresado)) 
+            if (decimal.TryParse(txtPrecio.Text, out decimal precioIngresado))
             {
                 MessageBox.Show("Ingrese un precio válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -48,7 +48,7 @@ namespace Pulperia.WinForms.Modales
             Producto productoParaGuardar = _esEdicion ? _productoOriginal! : new Producto();
 
 
-            
+
 
             productoParaGuardar.NombreProducto = txtNombre.Text.Trim();
             productoParaGuardar.IdCategoria = Convert.ToInt32(cboCategorias.SelectedValue);
@@ -66,13 +66,13 @@ namespace Pulperia.WinForms.Modales
                 //productoParaGuardar.StockActual = Convert.ToDouble(txtStockActual.Text);
             }
 
-            
-           
+
+
         }
 
         private void CargarCombos()
         {
-            cboCategorias.DataSource = _categoriaRepository.ObtenerTodos(); 
+            cboCategorias.DataSource = _categoriaRepository.ObtenerTodos();
             cboCategorias.DisplayMember = "Nombre";
             cboCategorias.ValueMember = "Id";
         }
@@ -86,6 +86,7 @@ namespace Pulperia.WinForms.Modales
                 // MODO EDICIÓN: Cambiamos títulos y cargamos los datos
                 this.Text = "Editar Producto";
                 btnGuardar.Text = "Actualizar";
+                lblTitulo.Text = "Editar Producto";
 
                 txtNombre.Text = _productoOriginal.NombreProducto;
                 cboCategorias.SelectedValue = _productoOriginal.IdCategoria;
@@ -99,7 +100,7 @@ namespace Pulperia.WinForms.Modales
                 chkEsPerecedero.Checked = _productoOriginal.EsPerecedero;
                 chkEstaActivo.Checked = _productoOriginal.EstaActivo;
 
-                
+
                 //txtStockActual.Enabled = false;
             }
             else
@@ -108,6 +109,7 @@ namespace Pulperia.WinForms.Modales
                 this.Text = "Nuevo Producto";
                 btnGuardar.Text = "Guardar";
                 chkEstaActivo.Checked = true; // Por defecto activo
+                lblTitulo.Text = "Agregar Producto";
             }
         }
     }
