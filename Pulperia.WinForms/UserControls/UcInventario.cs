@@ -39,19 +39,59 @@ namespace Pulperia.WinForms.UserControls
             CargarListadoProductos();
         }
 
+
+        private void CargarListadoCategorias()
+        {
+            try
+            {
+                // Obtenemos la lista desde el repositorio genérico o específico
+                var lista = _categoriaRepository.ObtenerTodos().ToList();
+
+                dgvCategorias.DataSource = null;
+                dgvCategorias.DataSource = lista;
+
+                ConfigurarColumnasCategorias();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar categorías: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void ConfigurarColumnasCategorias()
+        {
+            // Ocultamos el ID que no aporta valor visual
+            if (dgvCategorias.Columns["IdCategoria"] != null) dgvCategorias.Columns["IdCategoria"].Visible = false;
+
+            // Si tu entidad Categoria tiene otra bandera (ej. EstaActivo), la ocultas o configuras aquí
+
+            var colNombre = dgvCategorias.Columns["NombreCategoria"]; // Usa el nombre exacto de la propiedad en tu entidad Categoria
+            if (colNombre != null)
+            {
+                colNombre.HeaderText = "Nombre de la Categoría";
+                colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // Hace que se estire ocupando todo el ancho
+            }
+        }
+
         private void btnProductos_Click(object sender, EventArgs e)
         {
             tbcContenido.SelectedIndex = 0;
+            CargarListadoProductos();
+            lblTituloModulo.Text = "Inventario (Productos)";
         }
 
         private void btnCategorias_Click(object sender, EventArgs e)
         {
             tbcContenido.SelectedIndex = 1;
+            CargarListadoCategorias();
+            lblTituloModulo.Text = "Inventario (Categorias)";
         }
 
         private void btnStock_Click(object sender, EventArgs e)
         {
             tbcContenido.SelectedIndex = 2;
+            lblTituloModulo.Text = "Inventario (Alertas Y Stock)";
         }
 
         private void UcInventario_Load(object sender, EventArgs e)
@@ -197,15 +237,15 @@ namespace Pulperia.WinForms.UserControls
         private void btnEditar_Click(object sender, EventArgs e)
         {
 
-            if(dgvProductos.CurrentRow == null) 
+            if (dgvProductos.CurrentRow == null)
             {
-                    MessageBox.Show("Seleccione un registro por favor para edición", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                MessageBox.Show("Seleccione un registro por favor para edición", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
 
 
             var productoSeleccionado = (Producto)dgvProductos.CurrentRow.DataBoundItem;
-            using (var modal = new FrmEditarProducto(_productoRepository, _categoriaRepository, _unidadMedidaRepository, productoSeleccionado ))
+            using (var modal = new FrmEditarProducto(_productoRepository, _categoriaRepository, _unidadMedidaRepository, productoSeleccionado))
             {
                 if (modal.ShowDialog() == DialogResult.OK)
                 {
@@ -213,8 +253,21 @@ namespace Pulperia.WinForms.UserControls
                 }
             }
         }
-                
-            
-        
+
+        private void btnNuevaCategoria_Click(object sender, EventArgs e)
+        {
+            if (dgvCategorias.CurrentRow != null)
+            {
+
+            }
+        }
+
+        private void btnEditarCategoria_Click(object sender, EventArgs e)
+        {
+            if (dgvCategorias.CurrentRow != null)
+            {
+
+            }
+        }
     }
 }

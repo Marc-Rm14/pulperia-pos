@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
-            label1 = new Label();
+            lblTituloModulo = new Label();
             btnStock = new FontAwesome.Sharp.IconButton();
             btnCategorias = new FontAwesome.Sharp.IconButton();
             btnProductos = new FontAwesome.Sharp.IconButton();
@@ -43,18 +43,25 @@
             btnNuevo = new FontAwesome.Sharp.IconButton();
             txtBuscar = new TextBox();
             tPageCategorias = new TabPage();
+            dgvCategorias = new DataGridView();
+            panel2 = new Panel();
+            btnEditarCategoria = new FontAwesome.Sharp.IconButton();
+            btnNuevaCategoria = new FontAwesome.Sharp.IconButton();
             tPageAlertas = new TabPage();
             panelMenu.SuspendLayout();
             tbcContenido.SuspendLayout();
             tPageProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
             panel1.SuspendLayout();
+            tPageCategorias.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCategorias).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(12, 98, 145);
-            panelMenu.Controls.Add(label1);
+            panelMenu.Controls.Add(lblTituloModulo);
             panelMenu.Controls.Add(btnStock);
             panelMenu.Controls.Add(btnCategorias);
             panelMenu.Controls.Add(btnProductos);
@@ -64,16 +71,15 @@
             panelMenu.Size = new Size(994, 90);
             panelMenu.TabIndex = 0;
             // 
-            // label1
+            // lblTituloModulo
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.HighlightText;
-            label1.Location = new Point(40, 14);
-            label1.Name = "label1";
-            label1.Size = new Size(163, 41);
-            label1.TabIndex = 3;
-            label1.Text = "Inventario";
+            lblTituloModulo.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloModulo.ForeColor = SystemColors.HighlightText;
+            lblTituloModulo.Location = new Point(4, 0);
+            lblTituloModulo.Name = "lblTituloModulo";
+            lblTituloModulo.Size = new Size(252, 87);
+            lblTituloModulo.TabIndex = 3;
+            lblTituloModulo.Text = "Inventario  (Productos)";
             // 
             // btnStock
             // 
@@ -252,12 +258,78 @@
             // 
             // tPageCategorias
             // 
+            tPageCategorias.Controls.Add(dgvCategorias);
+            tPageCategorias.Controls.Add(panel2);
             tPageCategorias.Location = new Point(4, 5);
             tPageCategorias.Name = "tPageCategorias";
             tPageCategorias.Size = new Size(986, 460);
             tPageCategorias.TabIndex = 0;
             tPageCategorias.Text = "tabPage2";
             tPageCategorias.UseVisualStyleBackColor = true;
+            // 
+            // dgvCategorias
+            // 
+            dgvCategorias.AllowUserToAddRows = false;
+            dgvCategorias.AllowUserToDeleteRows = false;
+            dgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCategorias.BackgroundColor = SystemColors.Control;
+            dgvCategorias.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCategorias.Dock = DockStyle.Fill;
+            dgvCategorias.Location = new Point(0, 135);
+            dgvCategorias.Name = "dgvCategorias";
+            dgvCategorias.ReadOnly = true;
+            dgvCategorias.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvCategorias.RowHeadersVisible = false;
+            dgvCategorias.RowHeadersWidth = 51;
+            dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCategorias.Size = new Size(986, 325);
+            dgvCategorias.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(btnEditarCategoria);
+            panel2.Controls.Add(btnNuevaCategoria);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(986, 135);
+            panel2.TabIndex = 1;
+            // 
+            // btnEditarCategoria
+            // 
+            btnEditarCategoria.Anchor = AnchorStyles.Right;
+            btnEditarCategoria.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+            btnEditarCategoria.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            btnEditarCategoria.IconColor = Color.Black;
+            btnEditarCategoria.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnEditarCategoria.IconSize = 40;
+            btnEditarCategoria.Location = new Point(830, 49);
+            btnEditarCategoria.Name = "btnEditarCategoria";
+            btnEditarCategoria.Size = new Size(110, 46);
+            btnEditarCategoria.TabIndex = 2;
+            btnEditarCategoria.Text = "Editar";
+            btnEditarCategoria.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEditarCategoria.UseVisualStyleBackColor = true;
+            btnEditarCategoria.Click += btnEditarCategoria_Click;
+            // 
+            // btnNuevaCategoria
+            // 
+            btnNuevaCategoria.Anchor = AnchorStyles.Right;
+            btnNuevaCategoria.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+            btnNuevaCategoria.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
+            btnNuevaCategoria.IconColor = Color.Black;
+            btnNuevaCategoria.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnNuevaCategoria.IconSize = 40;
+            btnNuevaCategoria.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNuevaCategoria.Location = new Point(629, 49);
+            btnNuevaCategoria.Name = "btnNuevaCategoria";
+            btnNuevaCategoria.Size = new Size(123, 46);
+            btnNuevaCategoria.TabIndex = 1;
+            btnNuevaCategoria.Text = "Nuevo";
+            btnNuevaCategoria.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnNuevaCategoria.UseVisualStyleBackColor = true;
+            btnNuevaCategoria.Click += btnNuevaCategoria_Click;
             // 
             // tPageAlertas
             // 
@@ -279,13 +351,15 @@
             Size = new Size(994, 559);
             Load += UcInventario_Load;
             panelMenu.ResumeLayout(false);
-            panelMenu.PerformLayout();
             tbcContenido.ResumeLayout(false);
             tPageProductos.ResumeLayout(false);
             tPageProductos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            tPageCategorias.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvCategorias).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -306,6 +380,10 @@
         private StatusStrip statusStrip1;
         private DataGridView dgvProductos;
         private FontAwesome.Sharp.IconButton btnBuscar;
-        private Label label1;
+        private Label lblTituloModulo;
+        private DataGridView dgvCategorias;
+        private Panel panel2;
+        private FontAwesome.Sharp.IconButton btnEditarCategoria;
+        private FontAwesome.Sharp.IconButton btnNuevaCategoria;
     }
 }
