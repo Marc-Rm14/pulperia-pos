@@ -24,9 +24,9 @@ namespace Pulperia.Data.Repositories
         public bool Insert(Producto producto)
         {
             string sql = @"INSERT INTO productos 
-                           (nombre, id_categoria, id_unidad_medida, precio_venta, stock_actual, stock_minimo) 
-                           VALUES (@Nombre, @IdCategoria, @IdUnidadMedida, 
-                            @PrecioVenta, @StockActual, @StockMinimo)";
+                           (nombre, id_categoria, id_unidad_medida, precio_venta, es_perecedero, stock_minimo) 
+                           VALUES (@NombreProducto, @IdCategoria, @IdUnidad, 
+                            @Precio, @EsPerecedero, @StockMinimo)";
             try
             {   
                 using(var conn = _dataBase.ObtenerConexion()) 
@@ -125,9 +125,35 @@ namespace Pulperia.Data.Repositories
             throw new NotImplementedException();
         }
 
-        bool IGenericRepository<Producto>.Update(Producto entidad)
+        public bool Update(Producto entidad)
         {
-            throw new NotImplementedException();
+            string consulta = @"UPDATE productos
+                                SET nombre = @NombreProducto,
+                                    precio_venta = @Precio,
+                                    id_categoria = @IdCategoria,
+                                    id_unidad_medida = @IdUnidad,
+                                    esta_activo = @EstaActivo,
+                                    es_perecedero = @EsPerecedero,
+                                    stock_minimo = @StockMinimo
+                                WHERE id = @IdProducto";
+            try
+            {
+                using (var conn = _dataBase.ObtenerConexion())
+                {
+                    // Execute devuelve el número de filas afectadas en la DB
+                    int filasAfectadas = conn.Execute(consulta, entidad);
+                    return filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return false;
+            }
+
+
+
+
         }
     }
 }

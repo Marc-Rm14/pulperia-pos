@@ -217,6 +217,7 @@
             btnEditar.Text = "Editar";
             btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnNuevo
             // 
@@ -237,11 +238,12 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscar.BorderStyle = BorderStyle.FixedSingle;
+            txtBuscar.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtBuscar.ForeColor = Color.FromArgb(64, 64, 64);
             txtBuscar.Location = new Point(36, 50);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(346, 30);
+            txtBuscar.Size = new Size(346, 31);
             txtBuscar.TabIndex = 0;
             txtBuscar.Text = "Buscar Productos...";
             txtBuscar.Enter += txtBuscar_Enter;

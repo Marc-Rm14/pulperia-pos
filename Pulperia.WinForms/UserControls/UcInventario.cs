@@ -1,4 +1,5 @@
-﻿using Pulperia.Domain.Events;
+﻿using Pulperia.Domain.Entities;
+using Pulperia.Domain.Events;
 using Pulperia.Domain.Interfaces;
 using Pulperia.WinForms.Modales;
 
@@ -64,7 +65,7 @@ namespace Pulperia.WinForms.UserControls
             {
                 string criterio = txtBuscar.Text.Trim();
 
-                
+
                 if (criterio == "Buscar Productos...")
                 {
                     criterio = "";
@@ -176,7 +177,7 @@ namespace Pulperia.WinForms.UserControls
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var modal = new FrmEditarProducto(_productoRepository, _categoriaRepository, _unidadMedidaRepository,null))
+            using (var modal = new FrmEditarProducto(_productoRepository, _categoriaRepository, _unidadMedidaRepository, null))
             {
                 if (modal.ShowDialog() == DialogResult.OK)
                 {
@@ -192,5 +193,28 @@ namespace Pulperia.WinForms.UserControls
             InventarioEvents.VentaProcesada -= RecargarInventario;
             base.OnHandleDestroyed(e);
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
+            if(dgvProductos.CurrentRow == null) 
+            {
+                    MessageBox.Show("Seleccione un registro por favor para edición", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+            }
+
+
+            var productoSeleccionado = (Producto)dgvProductos.CurrentRow.DataBoundItem;
+            using (var modal = new FrmEditarProducto(_productoRepository, _categoriaRepository, _unidadMedidaRepository, productoSeleccionado ))
+            {
+                if (modal.ShowDialog() == DialogResult.OK)
+                {
+                    CargarListadoProductos(); // Se refresca tu grilla automáticamente
+                }
+            }
+        }
+                
+            
+        
     }
 }

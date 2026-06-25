@@ -41,7 +41,7 @@ namespace Pulperia.WinForms.Modales
             }
 
 
-            if (decimal.TryParse(txtPrecio.Text, out decimal precioIngresado))
+            if (!decimal.TryParse(txtPrecio.Text, out decimal precioIngresado))
             {
                 MessageBox.Show("Ingrese un precio válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -69,6 +69,23 @@ namespace Pulperia.WinForms.Modales
                 //productoParaGuardar.StockActual = Convert.ToDouble(txtStockActual.Text);
             }
 
+
+            bool exito;
+            if (_esEdicion)
+                exito = _productoRepository.Update(productoParaGuardar); // Debes tener este método implementado
+            else
+                exito = _productoRepository.Insert(productoParaGuardar);
+
+            if (exito)
+            {
+                MessageBox.Show("Producto guardado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK; // Esto avisa a la grilla que debe refrescarse
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Hubo un error al guardar el producto en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
         }
